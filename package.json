@@ -1,27 +1,27 @@
 {
   "name": "stateup",
   "description": "A mixin that helps you implement StateUp pattern.",
-  "version": "0.1.0",
-  "license": "MIT",
+  "version": "0.2.0",
   "repository": "https://github.com/garrydzeng/stateup",
-  "scripts": {
-    "test": "cd test && testem"
-  },
-  "devDependencies": {
-    "babel-plugin-transform-class-properties": "^6.23.0",
-    "babel-preset-env": "^1.2.1",
-    "babel-preset-react": "^6.23.0",
-    "babelify": "^7.3.0",
-    "browserify": "^14.1.0",
-    "mocha": "^3.2.0",
-    "react": "^15.4.2",
-    "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "testem": "^1.15.0"
-  },
+  "license": "MIT",
   "files": [
     "index.js",
     "package.json",
     "README.md"
-  ]
+  ],
+  "scripts": {
+    "test": "cd test && testem"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "rollup": "^0.47.0",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^8.1.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "testem": "^1.18.3"
+  }
 }

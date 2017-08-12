@@ -1,47 +1,52 @@
-module.exports = (Parent) => class extends Parent {
 
-  update(name, index, next) {
+function setState(property, index, state) {
 
-    let prop = this.props
-    let current = (prop.state || this.state)[name]
-    let state = undefined
+  let data = this.props
+  let currentState = (data.state || this.state)[property]
+  let nextState = undefined
 
-    if (index == -1) {
-      state = {
-        [name]: Object.assign(
-          new current.constructor(),
-          current,
-          next
-        )
-      }
-    }
-    else {
-      current[index] = Object.assign(
-        new current[index].constructor(),
-        current[index],
-        next
-      )
-      state = {
-        [name]: current
-      }
-    }
-
-    prop.setState
-      ? prop.setState(state)
-      : this.setState(state)
-  }
-
-  setBoundFunction(name, index = -1) {
-    return this.update.bind(this, ...arguments)
-  }
-
-  bind(name, index = -1) {
-    const state = (this.props.state || this.state)[name]
-    return {
-      setState: this.setBoundFunction(name, index),
-      state: index > -1 ?
-        state[index] :
+  if (index == -1) {
+    nextState = {
+      [property]: Object.assign(
+        new currentState.constructor(),
+        currentState,
         state
+      )
+    }
+  }
+  else {
+
+    const previous = currentState[index]
+    
+    // replace as newly
+    currentState[index] = Object.assign(
+      new previous.constructor(),
+      previous,
+      state
+    )
+
+    nextState = {
+      [property]: currentState
+    }
+  }
+
+  data.setState ? 
+    data.setState(nextState) :
+    this.setState(nextState)
+  //
+}
+
+module.exports = function(Component) {
+  return class StateupComponent extends Component {
+    bind(property, index = -1) {
+      const props = this.props, state = (props.state || this.state)[property]
+      return {
+        setState: setState.bind(this, property, index),
+        state: index > -1 ?
+          state[index] :
+          state
+        //
+      }
     }
   }
 }

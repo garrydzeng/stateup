@@ -1,6 +1,6 @@
 {
   "framework": "mocha",
-  "before_tests": "browserify -t [ babelify ] -o browser.js index.js",
+  "before_tests": "rollup -c plugins.js -f iife -i index.js -o browser.js",
   "ignore_missing_launchers": true,
   "serve_files": [
     "browser.js"

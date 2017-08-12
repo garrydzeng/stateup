@@ -1,8 +1,10 @@
-const assert = require("assert")
-const {Simulate, scryRenderedDOMComponentsWithTag, renderIntoDocument} = require('react-addons-test-utils')
-const stateup = require("../index")
-const React = require("react")
-const ReactDOM = require("react-dom")
+import assert from 'assert'
+import TestUtils from 'react-dom/test-utils'
+import stateup from '../index'
+import ReactDOM from 'react-dom'
+import React from 'react'
+
+const {Simulate, scryRenderedDOMComponentsWithTag, renderIntoDocument} = TestUtils
 
 class Toy extends React.PureComponent {
   render() {
@@ -35,13 +37,13 @@ class ToyArray extends stateup(React.Component) {
     this.state = {
       item: [
         { label: "B" },
-        { label: ""  }
+        { label: "" }
       ]
     }
   }
   render() {
     return (
-      <div className="list">
+      <div>
         <Toy {...this.bind("item", 0)} />
         <Toy {...this.bind("item", 1)} />
       </div>
